@@ -1,0 +1,188 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        2992,
+        1648
+      ],
+      "id": "be69444a-c528-4b5a-b8de-023e7d66272d",
+      "name": "When Telegram Message Received",
+      "webhookId": "a4b8bbde-24ea-4678-8452-2cbfd550d8fd",
+      "credentials": {
+        "telegramApi": {
+          "id": "nNQEdnUrhvNhYHin",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const invokeUrl = 'https://integrate.api.nvidia.com/v1/chat/completions';\nconst API_KEY = 'YOUR_API_KEY';\n\nconst input = $input.first()?.json?.message?.text;\n\nif (!input) {\n  return [\n    {\n      json: {\n        error: true,\n        message: 'No Telegram message text found in input.'\n      }\n    }\n  ];\n}\n\nconst systemPrompt = `You are an expert LinkedIn ghostwriter for tech creators.\n\nConvert a raw idea into a high-quality LinkedIn post.\n\nRules:\n- Start with a very strong hook\n- Keep paragraphs short\n- Make it clear, sharp, and easy to read\n- Sound human, not robotic\n- No emojis\n- End with exactly 3 relevant hashtags\n- Return only the final post text, nothing else`;\n\nconst userPrompt = `Turn this idea into a polished LinkedIn post for a tech audience:\n\n\"${input}\"`;\n\nconst payload = {\n  model: 'google/gemma-4-31b-it',\n  messages: [\n    { role: 'system', content: systemPrompt },\n    { role: 'user', content: userPrompt }\n  ],\n  max_tokens: 400,\n  temperature: 0.7,\n  top_p: 0.9,\n  stream: false\n};\n\ntry {\n  const response = await this.helpers.httpRequest({\n    method: 'POST',\n    url: invokeUrl,\n    headers: {\n      Authorization: `Bearer ${API_KEY}`,\n      'Content-Type': 'application/json'\n    },\n    body: payload,\n    json: true,\n    timeout: 60000\n  });\n\n  return [\n    {\n      json: {\n        telegramMessage: response?.choices?.[0]?.message?.content?.trim() || 'Failed to generate post.',\n        rawResponse: response\n      }\n    }\n  ];\n} catch (error) {\n  return [\n    {\n      json: {\n        error: true,\n        message: error.message,\n        description: error.description,\n        statusCode: error.statusCode,\n        response: error.response?.body || error.response\n      }\n    }\n  ];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3232,
+        1648
+      ],
+      "id": "98692a9e-7c2f-432e-a1a1-206ea4ab7a7f",
+      "name": "Invoke External API"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "={{ $('When Telegram Message Received').item.json.message.chat.id }}",
+        "message": "={{ $json.telegramMessage }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3440,
+        1648
+      ],
+      "id": "dfbf6584-173f-4566-8e12-59797cebee79",
+      "name": "Send Telegram Message and Await Reply",
+      "webhookId": "8831557b-d925-4e81-9aa6-906d878ba355",
+      "credentials": {
+        "telegramApi": {
+          "id": "nNQEdnUrhvNhYHin",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.approved }}",
+                    "rightValue": true,
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "equals"
+                    },
+                    "id": "0687e679-384c-49b7-a267-b98838b272e7"
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        3680,
+        1648
+      ],
+      "id": "e1a5aabe-275f-4de0-8a4a-30a996400def",
+      "name": "Route by Response Conditions"
+    },
+    {
+      "parameters": {
+        "content": "## Linked Post Generator\n\n### How it works\n\n1. The workflow triggers when a message is received in Telegram.\n2. Custom JavaScript code processes the incoming message.\n3. A response message is sent via Telegram, waiting for a reply.\n4. The workflow branches based on the response received.\n\n### Setup steps\n\n- [ ] Configure Telegram credentials for connectivity.\n- [ ] Add the api key in 'YOUR_API_KEY' field\n- [ ] Use Free AI API (NVIDIA): https://build.nvidia.com/\n\n### Customization\n\nModify the JavaScript code to change the message processing logic or response criteria.",
+        "height": 368,
+        "width": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2384,
+        1456
+      ],
+      "id": "9029ebc3-5627-4960-a847-7c3942a36202",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "## Telegram message processing\n\nTriggers on Telegram message, processes it, sends response, and waits for reply.",
+        "height": 304,
+        "width": 640,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2944,
+        1520
+      ],
+      "id": "f056cecd-5ed2-4f52-b8b6-138a040ac624",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "## Branch based on response\n\nBranches the workflow based on the Telegram response received.",
+        "height": 352,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3632,
+        1456
+      ],
+      "id": "c759e6f9-9fd3-47a2-bbe3-797047a1a738",
+      "name": "Sticky Note11"
+    }
+  ],
+  "connections": {
+    "When Telegram Message Received": {
+      "main": [
+        [
+          {
+            "node": "Invoke External API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Invoke External API": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram Message and Await Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Telegram Message and Await Reply": {
+      "main": [
+        [
+          {
+            "node": "Route by Response Conditions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "de61b7c9fab1458ac5f4c94072f7f436776044da37bcfe191b8b7eb38df97f64"
+  }
+}
