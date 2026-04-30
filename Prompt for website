@@ -1,0 +1,58 @@
+Using the design system I've uploaded and the website structure screenshot I've provided, build me a complete modern personal portfolio website.
+
+WEBSITE STRUCTURE (from screenshot):
+Build all 6 sections in this exact order:
+
+1. HERO SECTION
+- Large name heading
+- One-line positioning statement (who you are + what you do)
+- Trust badges showing credentials/company
+- Two CTAs: primary "See my work" (scroll to projects), secondary "Let's connect" (scroll to contact)
+- Social icons row: Instagram, LinkedIn, GitHub
+- Right side: Your photo with 3 floating stat cards overlapping the image
+
+2. STATS STRIP
+- 5 boxes in a row showing key metrics
+- Format: Large number, title, subtitle
+- Examples: years of experience, projects shipped, awards, social metrics
+- Responsive: 2 columns on mobile
+
+3. ABOUT SECTION
+- Heading: Your value proposition
+- 2-3 paragraph story (past → present → future)
+- Right side: 4 credential cards (education, speaking, awards, availability)
+- 1 blue CTA card showing what you're open to
+- "What I Believe" quote section at bottom
+
+4. PROJECTS SECTION
+- Grid of 4-6 project cards
+- Each card: project thumbnail, title, short description, tech tags, GitHub + demo buttons
+- Clean card design with hover effects
+
+5. SKILLS SECTION
+- Left: 4-5 skill category cards with tech stack tags listed
+- Each category has a proof line below the tags
+- Right side: "What Drives Me" statement, "Currently Learning" tags, large experience stat card
+
+6. CONTACT SECTION
+- Left: Heading, description, email + social handles listed, response time promise
+- Right: Contact form (name, email, message textarea, submit button)
+- Clean two-column layout
+
+DESIGN REQUIREMENTS:
+- Use Next.js 14 + Tailwind CSS + TypeScript
+- Fully responsive (mobile-first)
+- Dark mode support
+- Smooth scroll navigation
+- Sticky navbar with logo + section links
+- Modern, minimal aesthetic — clean cards, subtle shadows, good spacing
+- Use design system colors, typography, spacing, components from the .md file
+- Use structure screenshot for exact visual layout and placement
+
+OUTPUT:
+- Complete, production-ready Next.js project
+- All components built and styled
+- Ready to deploy on Vercel
+- Placeholder content where needed (I'll replace with my own details)
+
+Start by setting up the Next.js project structure, then build each section following the uploaded design system and structure screenshot exactly.
