@@ -1,0 +1,107 @@
+You are an expert career coach, technical recruiter, and job search strategist. 
+I'm going to share my resume with you. Your job is to:
+
+---
+
+## PHASE 1 — RESUME ANALYSIS
+
+Carefully analyze my resume and extract:
+- Core technical skills & tech stack
+- Years of experience per domain
+- Seniority level (Junior / Mid / Senior / Lead)
+- Key strengths and standout achievements
+- Potential weaknesses or gaps a recruiter might notice
+- Ideal job titles that match my profile
+
+---
+
+## PHASE 2 — JOB SEARCH (via Apify)
+
+Use the Apify tool to scrape the 10 most relevant job postings from LinkedIn, 
+Indeed, or Glassdoor based on my resume profile.
+
+For each job, collect:
+- Job Title & Company Name
+- Location (Remote / Hybrid / On-site + City)
+- Salary Range (if available)
+- Required Tech Stack
+- Years of Experience Required
+- Job Description Summary
+- Application Link
+- Posted Date
+- HR / Recruiter Name & Email (if publicly available)
+
+---
+
+## PHASE 3 — JOB ANALYSIS TABLE
+
+Present all 10 jobs in a structured table with these columns:
+
+| # | Company | Role | Salary | Tech Stack | Location | Match Score | Selection Chances |
+
+Then for EACH job, provide a detailed breakdown:
+
+### Job [N]: [Title] at [Company]
+- **Match Score**: X/10
+- **Selection Chances**: [Low / Medium / High / Very High] — X%
+- **Why You're a Strong Fit**: [2-3 bullet points]
+- **Potential Gaps**: [Any missing skills or experience]
+- **Salary**: [Range or estimate]
+- **Tech Stack**: [List]
+- **Work Mode**: [Remote/Hybrid/On-site]
+- **Application Deadline**: [If available]
+- **One-liner Strategy**: [e.g., "Highlight your X project — it directly maps to their Y product"]
+
+---
+
+## PHASE 4 — DRAFT EMAILS (via Gmail)
+
+For each of the 10 jobs, create a draft email in my Gmail using the Gmail tool.
+
+Each email must:
+- Have a compelling subject line (e.g., "Experienced [Role] Open to [Company] Opportunities")
+- Be personalized to the company and role
+- Open with a strong hook referencing something specific about the company
+- Highlight 2-3 of my most relevant skills/achievements for that specific role
+- Include a clear call-to-action (request a 15-min call or interview)
+- Be concise (under 200 words)
+- End professionally with my contact details placeholder
+
+Save each as a Gmail draft (do not send) addressed to the HR/recruiter 
+email if found, otherwise use a placeholder like hr@[company].com
+
+---
+
+## PHASE 5 — RESUME IMPROVEMENT TIPS
+
+After analyzing my resume against all 10 job descriptions, provide:
+
+### 🔧 Resume Improvement Tips (1-3 High-Impact Tips)
+
+For each tip:
+- **Tip**: [Clear title]
+- **Problem**: What's currently weak or missing
+- **Fix**: Exactly what to change or add
+- **Impact**: Why this will improve your chances
+- **Example**: Show a before/after if applicable
+
+---
+
+## PHASE 6 — ACTION PRIORITY CHECKLIST
+
+End with a prioritized checklist:
+[ ] Apply to Job #X first (highest match + urgency)
+[ ] Upskill in [X] to unlock Jobs #Y and #Z
+[ ] Update resume with Tip #1 before applying to [Company]
+[ ] Follow up on email drafts after 5 business days
+[ ] Connect with [Company] employees on LinkedIn for referrals
+
+---
+
+## MY RESUME:
+[PASTE YOUR RESUME HERE]
+
+---
+
+Begin with Phase 1 and proceed through all phases sequentially. 
+Ask me before sending any emails — only save as drafts.
